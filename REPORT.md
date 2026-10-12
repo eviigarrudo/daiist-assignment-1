@@ -71,15 +71,14 @@ In the case of the PyTorch implementations, the L2 penalty was calculated with t
 
 Test-Set Results
 
-A table is given which compares the three logistic-regression implementations with the COMPAS reference and the naive baseline; in all cases where the underlying scores and labels are available, the same held-out test set should be used for the model comparisons.
 
-Column 1	Column 2	Column 3	Column 4
-Model	Test ROC-AUC	Test Recall	Test FPR
-Majority-class baseline	[Insert measured AUC]	[Insert measured recall]	[Insert measured FPR]
-Scikit-learn logistic regression	0.729	0.580	0.229
-Manual PyTorch logistic regression	0.729	0.580	0.229
-Standard PyTorch logistic regression	0.729	0.580	0.229
-COMPAS reference	0.690	0.530	0.237
+| Model | Test ROC-AUC | Test recall | Test FPR |
+|---|---|---|---|
+| Majority-class baseline | 0.500 | 0.000 | 0.000 |
+| scikit-learn | 0.729 | 0.580 | 0.229 |
+| Manual PyTorch | 0.729 | 0.580 | 0.229 |
+| Standard PyTorch | 0.729 | 0.580 | 0.229 |
+| COMPAS reference (decile ≥ 5) | 0.690 | 0.530 | 0.237 |
 
 
 The three implementations matched each other when their test metrics were rounded to three decimal places, with ROC-AUC values of 0.729 as compared to 0.690 for the COMPAS reference. This shows better ranking performance in this evaluation, even though it does not prove that the model would improve actual pretrial decisions.
@@ -88,7 +87,7 @@ The discrepancy in the initial coefficient between the scikit-learn and the PyTo
 
 When the threshold was selected, the proposed model obtained a test recall of 0.580 with a false positive rate of 0.229, as compared to COMPAS's reference recall of 0.530 and a false positive rate of 0.237. It thus managed to identify a higher proportion of actual reoffenders while having a slightly lower overall false positive rate in this instance. Yet the bootstrap confidence intervals contained zero for the difference in performance, and the uncertainty resulting from the choice of threshold on the validation data was not completely taken into account. For this reason, the results can only be regarded as suggestive and not as conclusive evidence of an improvement over COMPAS.
 
-A majority-class baseline serves as a simple point of reference when evaluating whether the model performs better than simply always predicting the most common class. The exact values for its AUC, recall, and false positive rate should be obtained from the saved evaluation of the test set and not be calculated from the class distribution.
+A majority-class baseline serves as a simple point of reference when evaluating whether the model performs better than simply always predicting the most common class.
 
 Fairness Audit
 
